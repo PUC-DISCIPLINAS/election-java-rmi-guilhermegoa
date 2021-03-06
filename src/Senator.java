@@ -14,17 +14,8 @@ public class Senator {
         this.votes++;
     }
 
-    public String getVoted(){
-        return "Votes: " + this.votes;
+    public String getVoted() {
+        return "Votes -> " + this.votes;
     }
 
-    @Override
-    public String toString() {
-        return "Senator{" +
-                "nunber='" + nunber + '\'' +
-                ", name='" + name + '\'' +
-                ", political_party='" + political_party + '\'' +
-                ", votes=" + votes +
-                '}';
-    }
 }

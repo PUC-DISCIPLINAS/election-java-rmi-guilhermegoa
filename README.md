@@ -20,8 +20,8 @@ Considere uma interface Election que fornece dois métodos remotos:
 - **vote(String eleitor, String candidato)**
     - String eleitor: código hash MD5 gerado a partir do nome completo do eleitor.
     - String candidato: String de 3 caracteres numéricos que identificam um candidato.
-- **result(String candidato)**: este método possui dois parâmetros com os quais o servidor recebe o número de um candidato e
-  retorna para o cliente o número de votos desse candidato.
+- **result(String candidato)**: este método possui dois parâmetros com os quais o servidor recebe o número de um
+  candidato e retorna para o cliente o número de votos desse candidato.
 - Os identificadores de eleitor devem ser gerados a partir de uma função MD5 do nome completo do eleitor.
 - O sistema deve carregar a lista de candidatos a partir do arquivo senadores.csvPré-visualizar o documento  
   Desenvolva um sistema para o serviço Election utilizando o Java RMI, que garanta que seus registros permaneçam
@@ -36,15 +36,21 @@ segundos.
 ***
 
 ## Classes
-**IElection**:
 
-**Senator**:
+**IElection**: Interface que extende Remote do java rmi, onde tem os métodos que serão implemetados.
 
-**Server**:
+**Senator**: Classe que guarda os dados de um Senador.
 
-**Client**:
+**File**: Classe que cuida dos metodos que mexem com arquivo.
+
+**ElectionServant**: Classe que implemeta a interface IElection e gurarda a cache dos dados da eleição.
+
+**Server**: Classe que inicia o servidor, instancioando ElectionServant e o coloca no rmiregistry.
+
+**Client**: Classe na qual executa as ações do cliente.
 
 ***
+
 ## Compilar (no terminal dentro da pasta src)
 
 - Para compilar o projeto, use os comandos:
@@ -54,35 +60,33 @@ segundos.
 > javac Client.java
 
 ***
+
 ## Iniciar
 
+- Para iniciar o rmiregistry
+
+> **Linux**: rmiregistry &
+>
+>**Windowns**: start rmiregistry
+
 - Para iniciar o server e o cliente, use os comandos:
-
-> **Linux**: rmiregistry &  
-> 
->**Windowns**: 
-
 
 > java Server
 >
 > java Client
 
 ***
+
 ### Comandos (é necessario digitar um número seguido enter)
 
-- 1 - Criar sala
-- Digitar o endereço da salar acima de 224 Ex.: 225.8.9.1
+- 0 - Para sair.
 
-- 2 - Listar salas
+- 1 - Votar (nomes repetidos nao votam)
+    - Digite o nome da pessoa que está votando.
+    - Digite o numero do candidato.
 
-- 3 - Entrar em uma sala
-    - Digitar posição da sala, visto na lista de sala
-    - Digitar o nome do usuário
-    - Ao entrar na sala, são possiveis a seguintes açoes
-        - Enviar mensagem: para enviar uma mensagem, basta digitar a mensagem
-        - Listar membros: para listar, basta digitar "listar"
-        - Sair: para sair, basta digitar "sair" 
-
+- 2 - Ver resultado do candidato
+    - Digite o numero do candidato
 
 
 
